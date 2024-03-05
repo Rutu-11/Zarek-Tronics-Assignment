@@ -15,4 +15,16 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+router.get('/', async(req,res)=>{
+  try {
+    const users = await User.find();
+
+    // Return the list of users
+    res.status(200).json(users);
+  } catch (err) {
+    // Handle errors
+    res.status(500).json({ error: err.message });
+  }
+})
+
 module.exports = router;
