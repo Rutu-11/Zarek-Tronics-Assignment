@@ -1,0 +1,39 @@
+body {
+    /* fallback for old browsers */
+    background: #f093fb;
+  
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1));
+  
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1));
+  }
+
+
+  .error-text {
+    color: red;
+    font-size: 0.6em;
+    margin-top: -1.2rem;
+    margin-bottom: 1rem;
+    /* Add any additional styles as needed */
+  }
+
+  
+  @media (min-width: 768px) and (max-width: 991px) {
+    .m-md-2 {
+      margin: 2rem !important; /* Adjust margin for md screen */
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .overflowFix{
+      margin: 0 !important;
+      /* margin-top: 10rem; */
+      
+      align-items: flex-start; /* Align items to the start of the flex container */
+      overflow-y: auto; /* Add scroll bar for overflow content */
+      max-height: 90vh; /* Set maximum height to viewport height */
+    }
+  }
+  
+  

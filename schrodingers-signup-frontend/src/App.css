@@ -1,5 +1,30 @@
-.App{
+.App {
   width: 100vw;
-  margin: auto;
+  height: 100vh; /* Ensure full height of the viewport */
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
   border: 2px solid blue;
+}
+
+/* Media query for large screens */
+@media (min-width: 992px) {
+  .App {
+    width: 70vw;
+    margin: auto;
+  }
+}
+
+/* Media query for medium screens */
+@media (min-width: 768px) and (max-width: 991px) {
+  .App {
+    width: 80vw;
+  }
+}
+
+/* Media query for small screens */
+@media (max-width: 767px) {
+  .App {
+    width: 100vw;
+  }
 }

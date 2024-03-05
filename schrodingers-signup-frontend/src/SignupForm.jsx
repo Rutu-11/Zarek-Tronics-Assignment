@@ -13,7 +13,7 @@ console.log('isOnline',isOnline)
 
 async function appendOfflineDataToCloud(user){
     try{
-        await axios.post('http://localhost:5000/api/user/signup', user);
+        await axios.post('https://schrodingers-signup-backend.vercel.app/api/user/signup', user);
     }
 catch (error) {
     console.error('Error:', error);
@@ -86,7 +86,7 @@ useEffect(() => {
     onSubmit: async (values) => {
       try {
         if (isOnline) {
-          await axios.post('http://localhost:5000/api/user/signup', values);
+          await axios.post('https://schrodingers-signup-backend.vercel.app/api/user/signup', values);
           alert('User registered successfully');
           formik.resetForm();
         } else {
