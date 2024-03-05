@@ -19,7 +19,9 @@ const io = socketio(server);
 
 app.use(cors());
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/schrodingers_signup', {
+// mongodb://localhost:27017/schrodingers_signup
+// 
+mongoose.connect('mongodb+srv://rutujadhekolkar97:PeLgJ7bjF07h3vz9@cluster0.mte1ope.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -42,3 +44,9 @@ app.get('/health', (req, res) => {
 // Start server
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+
+//rutujadhekolkar97,  QqWabG6JgEeVYFef
+
+//rutujadhekolkar97, PeLgJ7bjF07h3vz9

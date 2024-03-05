@@ -4,7 +4,6 @@ const User = require('../models/User');
 
 // POST route for user signup
 router.post('/signup', async (req, res) => {
-    console.log('req',req.body)
   try {
     const { name, email, password, course, session } = req?.body;
     const user = new User({ name, email, password, session, course });
