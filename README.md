@@ -1,6 +1,6 @@
 # Schroedinger's Signup Frontend
 
-##The application is deployed and accessible at the following link: [Schroedinger's Signup Frontend App](https://schrodingers-signup-frontend.vercel.app/)
+## The application is deployed and accessible at the following link: [Schroedinger's_Deployed Signup Frontend App](https://schrodingers-signup-frontend.vercel.app/)
 
 ## Overview
 Schroedinger's Signup is a frontend application designed to provide users with a seamless registration experience, incorporating both online and offline modes. It offers real-time validations and email verifications while maintaining simplicity and elegance in its user interface.
@@ -35,6 +35,8 @@ Schroedinger's Signup is a frontend application designed to provide users with a
 ---
 
 # Schroedinger's Signup Backend
+
+## The application is deployed and accessible at the following link: [Schroedinger's_Deployed Signup Backend App](https://schrodingers-signup-backend.vercel.app/)
 
 ## Overview
 Schroedinger's Signup Backend serves as the brain behind the registration system, handling data storage, authentication, and communication with the frontend. It utilizes Node.js and MongoDB for efficient data management.
