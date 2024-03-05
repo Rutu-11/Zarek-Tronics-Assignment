@@ -1,28 +1,27 @@
-// models/User.js
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: [true, 'First Name is required'],
-    // validate: {
-    //   validator: function(v) {
-    //     // Regex for first name validation
-    //     return /^[a-zA-Z]+$/.test(v);
-    //   },
-    //   message: props => `${props.value} should not start with a number`
-    // }
+    validate: {
+      validator: function(v) {
+        // Regex for first name validation: only alphabets allowed
+        return /^[a-zA-Z]+$/.test(v);
+      },
+      message: props => `${props.value} should only contain alphabets`
+    }
   },
   lastName: {
     type: String,
     required: [true, 'Last Name is required'],
-    // validate: {
-    //   validator: function(v) {
-    //     // Regex for last name validation
-    //     return /^[a-zA-Z]+$/.test(v);
-    //   },
-    //   message: props => `${props.value} should not start with a number`
-    // }
+    validate: {
+      validator: function(v) {
+        // Regex for last name validation: only alphabets allowed
+        return /^[a-zA-Z]+$/.test(v);
+      },
+      message: props => `${props.value} should only contain alphabets`
+    }
   },
   DOB: {
     type: Date,
@@ -34,16 +33,16 @@ const userSchema = new mongoose.Schema({
     default: 'Female',
     required: [false, 'Gender is not required']
   },
-  class: {
+  Class: {
     type: String,
     required: [false, 'Class is not required']
   },
   phoneNumber: {
     type: String,
-    required: [false, 'Phone Number  not required'],
+    required: [false, 'Phone Number is not required'],
     validate: {
       validator: function(v) {
-        // Regex for phone number validation
+        // Regex for phone number validation: 10 digits only
         return /^[0-9]{10}$/.test(v);
       },
       message: props => `${props.value} is not a valid phone number`
@@ -66,11 +65,6 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Password is required'],
     minlength: [8, 'Password must be at least 8 characters']
   },
-  // status: {
-  //   type: String,
-  //   enum: ['active', 'inactive'],
-  //   default: 'active'
-  // }
 });
 
 const User = mongoose.model('User', userSchema);

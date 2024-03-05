@@ -5,8 +5,8 @@ const User = require('../models/User');
 // POST route for user signup
 router.post('/signup', async (req, res) => {
   try {
-    const { name, email, password, course, session } = req?.body;
-    const user = new User({ name, email, password, session, course });
+    const { firstName, lastName, email, password, DOB,Class, gender, phoneNumber } = req?.body;
+    const user = new User({ firstName, lastName, email, password, DOB,Class, gender, phoneNumber });
     await user.save();
     res.status(201).json({ message: 'User registered successfully' });
   } catch (err) {
