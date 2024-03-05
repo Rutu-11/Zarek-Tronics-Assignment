@@ -1,5 +1,7 @@
 # Schroedinger's Signup Frontend
 
+##The application is deployed and accessible at the following link: [Schroedinger's Signup Frontend App](https://schrodingers-signup-frontend.vercel.app/)
+
 ## Overview
 Schroedinger's Signup is a frontend application designed to provide users with a seamless registration experience, incorporating both online and offline modes. It offers real-time validations and email verifications while maintaining simplicity and elegance in its user interface.
 
