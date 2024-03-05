@@ -29,9 +29,16 @@ const userSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ['Female', 'Male','Other'],
-    default: 'Female',
-    required: [false, 'Gender is not required']
+    enum: ['Female', 'Male', 'Other', ''],
+    required: [false, 'Gender is not required'],
+    validate: [
+      {
+        validator: function(v) {
+          return v === '' || ['Female', 'Male', 'Other'].includes(v);
+        },
+        message: props => `${props.value} is not a valid enum value for path 'gender'`
+      }
+    ]
   },
   Class: {
     type: String,
@@ -40,13 +47,14 @@ const userSchema = new mongoose.Schema({
   phoneNumber: {
     type: String,
     required: [false, 'Phone Number is not required'],
-    validate: {
-      validator: function(v) {
-        // Regex for phone number validation: 10 digits only
-        return /^[0-9]{10}$/.test(v);
-      },
-      message: props => `${props.value} is not a valid phone number`
-    }
+    validate: [
+      {
+        validator: function(v) {
+          return v === '' || /^[0-9]{10}$/.test(v);
+        },
+        message: props => `${props.value} is not a valid phone number`
+      }
+    ]
   },
   email: {
     type: String,
