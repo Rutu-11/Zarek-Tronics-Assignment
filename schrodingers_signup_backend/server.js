@@ -23,7 +23,8 @@ const io = socketio(server);
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://rutujadhekolkar97:PeLgJ7bjF07h3vz9@cluster0.mte1ope.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+const mongoURI = process.env.MONGODB_URI;
+mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
