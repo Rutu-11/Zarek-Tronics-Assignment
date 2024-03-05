@@ -11,38 +11,57 @@ import {
   MDBCardBody,
   MDBInput,
   MDBRadio,
+  // MDBIcon,
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
-
+import Toaster from "./components/Toaster";
 import "./RegistrationForm.css";
+import { useNavigate } from "react-router-dom";
 
 function RegistrationForm() {
   const [isOnline, setIsOnline] = useState(true);
   const [offlineFormData, setOfflineFormData] = useState(null);
+  const navigate = useNavigate();
   console.log("isOnline", isOnline);
 
   async function appendOfflineDataToCloud(user) {
     try {
       await axios.post(
-        // "https://schrodingers-signup-backend.vercel.app/api/user/signup",
-        "http://localhost:5000/api/user/signup",
+        "https://schrodingers-signup-backend.vercel.app/api/user/signup",
+        // "http://localhost:5000/api/user/signup",
         user
       );
+      return true; // Indicate successful append
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred. Please try again later.");
+      Toaster.error("An error occurred. Please try again later.");
+      return false; // Indicate failed append
     }
   }
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("offlineFormData")) || [];
     if (data && data.length > 0) {
-      data.forEach((user) => {
-        appendOfflineDataToCloud(user);
-      });
+      // Array to hold promises for each async request
+      const promises = data.map((user) => appendOfflineDataToCloud(user));
 
-      // Remove all processed user data from the array
-      localStorage.setItem("offlineFormData", JSON.stringify([]));
+      // Wait for all promises to resolve
+      Promise.all(promises)
+        .then((results) => {
+          // Check if all appends were successful
+          if (results.every((result) => result === true)) {
+            // If all successful, set offlineFormData to empty array
+            localStorage.setItem("offlineFormData", JSON.stringify([]));
+            Toaster.success("Data appended to Server");
+          } else {
+            // If any failed, do not clear offlineFormData
+            console.log("Some data failed to append to the server.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          Toaster.error("An error occurred. Please try again later.");
+        });
     }
   }, [isOnline]);
 
@@ -103,37 +122,43 @@ function RegistrationForm() {
       try {
         if (isOnline) {
           await axios.post(
-            // "https://schrodingers-signup-backend.vercel.app/api/user/signup",
-            "http://localhost:5000/api/user/signup",
+            "https://schrodingers-signup-backend.vercel.app/api/user/signup",
+            // "http://localhost:5000/api/user/signup",
             values
           );
-          alert("User registered successfully");
+          Toaster.success("User registered successfully.");
           formik.resetForm();
+
+          // navigate('/login')
         } else {
           const data =
             JSON.parse(localStorage.getItem("offlineFormData")) || [];
           data.push(values);
           localStorage.setItem("offlineFormData", JSON.stringify(data));
           setOfflineFormData(values);
-          alert("User registered offline. Data will be submitted once online.");
+          Toaster.success("User registered offline. Data will be submitted once online.");
           formik.resetForm();
         }
       } catch (error) {
         console.error("Error:", error);
-        alert("An error occurred. Please try again later.");
+        const errorMessage = error?.response?.data?.error || "Internal Server Error";
+        Toaster.error(errorMessage);
       }
     },
   });
 
   return (
-    <MDBContainer >
+    <MDBContainer data-aos="fade-down" className="">
       <MDBRow className=" overflowFix justify-content-center align-items-center m-5 m-md-2 m-sm-0">
-        <MDBCard>
+        <MDBCard className="background">
           <MDBCardBody className="px-4">
-            <h3 style={{color:"#0468aa"}} className="fw-bold mb-4 pb-2 pb-md-0 mb-md-5 text-center   ">
+            <h3
+              style={{ color: "#0468aa" }}
+              className="fw-bold mb-4 pb-2 pb-md-0 mb-md-5 text-center   "
+            >
               Registration Form
-            </h3>fluid
-            <p style={{ textAlign: "center" }}>
+            </h3>
+            <p className="fw-bold mb-2  pb-md-0 mb-md-3 text-center   ">
               {isOnline ? (
                 <span style={{ color: "green" }}>&#8226; Online</span>
               ) : (
@@ -282,13 +307,28 @@ function RegistrationForm() {
                   ) : null}
                 </MDBCol>
               </MDBRow>
-              <MDBBtn className="mb-4" size="lg" type="submit">
+              <MDBBtn className="mb-4 fullWidthBtn" size="lg" type="submit">
                 Submit
               </MDBBtn>
             </form>
           </MDBCardBody>
+          <div className="text-center">
+            <p>
+              Allready Registered?{" "}
+              <a
+                href="#!"
+                className="text-decoration-none"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                Login
+              </a>
+            </p>
+          </div>
         </MDBCard>
       </MDBRow>
+      <Toaster/>
     </MDBContainer>
   );
 }

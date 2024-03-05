@@ -1,39 +1,77 @@
 body {
-    /* fallback for old browsers */
-    background: #f093fb;
-  
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1));
-  
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1));
-  }
+  background: #d9a7c7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #fffcdc,
+    #d9a7c7
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #fffcdc,
+    #d9a7c7
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.background {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
 
+.error-text {
+  color: red;
+  font-size: 0.6em;
+  margin-top: -1.2rem;
+  margin-bottom: 1rem;
+  /* Add any additional styles as needed */
+}
 
-  .error-text {
-    color: red;
-    font-size: 0.6em;
-    margin-top: -1.2rem;
-    margin-bottom: 1rem;
-    /* Add any additional styles as needed */
-  }
+/* Add this CSS to your RegistrationForm.css file or any other global styles */
 
-  
-  @media (min-width: 768px) and (max-width: 991px) {
-    .m-md-2 {
-      margin: 2rem !important; /* Adjust margin for md screen */
-    }
+/* Center the button horizontally */
+.fullWidthBtn {
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.fullWidthBtn:hover {
+  background-color: #56a8de;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .m-md-2 {
+    margin: 2rem !important; /* Adjust margin for md screen */
   }
-  
-  @media (max-width: 767px) {
-    .overflowFix{
-      margin: 0 !important;
-      /* margin-top: 10rem; */
-      
-      align-items: flex-start; /* Align items to the start of the flex container */
-      overflow-y: auto; /* Add scroll bar for overflow content */
-      max-height: 90vh; /* Set maximum height to viewport height */
-    }
+}
+
+@media (max-width: 767px) {
+  .overflowFix {
+    margin: 0 !important;
+    /* margin-top: 10rem; */
+
+    align-items: flex-start; /* Align items to the start of the flex container */
+    overflow-y: auto; /* Add scroll bar for overflow content */
+    max-height: 90vh; /* Set maximum height to viewport height */
   }
-  
-  
+}
+
+@media (min-width: 576px) {
+  .loginMediaquery {
+    width: 96%;
+  }
+}
+
+@media (min-width: 768px) {
+  .loginMediaquery {
+    width: 60%;
+  }
+}
+
+@media (min-width: 992px) {
+  .loginMediaquery {
+    width: 50%;
+  }
+}

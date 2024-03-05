@@ -1,17 +1,39 @@
-// import SignupForm from "./SignupForm";
-
-import './App.css'
-// import Login from './Login';
-import RegitrationForm from "./RegistrationForm";
+import { useEffect, useState } from "react";
+import "./App.css";
+import Routes from "./Routes/Route";
+import LoadingAnimation from "./LoadingAnimation/LoadingAnimation";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    AOS.init({
+      offset: 350,
+      duration: 8000,
+    });
+    AOS.refreshHard();
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3700);
+  }, []);
   return (
-    <div className="App">
-      {/* <h1 style={{color:"blue", textAlign:'center'}} >Schrodingers Signup</h1> */}
-      {/* <SignupForm /> */}
-      <RegitrationForm/>
-      {/* <Login/> */}
-    </div>
+    <>
+      {loading ? (
+        <LoadingAnimation />
+      ) : (
+        <div className="App">
+          {/* <div data-aos="fade-down"> */}
+          <Routes />
+
+          {/* </div> */}
+        </div>
+      )}
+    </>
   );
 }
 

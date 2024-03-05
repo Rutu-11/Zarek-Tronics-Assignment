@@ -2,9 +2,10 @@
   width: 100vw;
   height: 100vh; /* Ensure full height of the viewport */
   display: flex;
+  flex-direction: column;
   justify-content: center; /* Horizontally center */
   align-items: center; /* Vertically center */
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
 }
 
 /* Media query for large screens */
@@ -12,6 +13,7 @@
   .App {
     width: 70vw;
     margin: auto;
+    justify-content: center;
   }
 }
 
@@ -19,6 +21,7 @@
 @media (min-width: 768px) and (max-width: 991px) {
   .App {
     width: 80vw;
+    justify-content: center;
   }
 }
 
