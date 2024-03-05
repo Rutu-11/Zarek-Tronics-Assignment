@@ -36,7 +36,9 @@ io.on('connection', socket => {
 
 // Routes
 app.use('/api/user', userRoutes);
-app.use('/health', "OK");
+app.get('/health', (req, res) => {
+  res.send('OK');
+});
 // Start server
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
