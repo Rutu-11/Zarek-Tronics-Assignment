@@ -11,9 +11,9 @@ import {
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
-import "./RegistrationForm.css";
+import "../Styles/RegistrationForm.css";
 import { useNavigate } from "react-router-dom";
-import Toaster from "./components/Toaster";
+import Toaster from "../components/Toaster";
 
 function Login() {
   const navigate = useNavigate();
@@ -36,7 +36,6 @@ function Login() {
         // if (isOnline) {
         await axios.post(
           "https://schrodingers-signup-backend.vercel.app/api/user/login",
-          // "http://localhost:5000/api/user/login",
           values
         );
         Toaster.success("User logged in successfully");

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import "./App.css";
-import Routes from "./Routes/Route";
-import LoadingAnimation from "./LoadingAnimation/LoadingAnimation";
+import "../Styles/App.css";
+import Routes from "../Routes/Route";
+import LoadingAnimation from "../LoadingAnimation/LoadingAnimation";
 import AOS from "aos";
 import "aos/dist/aos.css";
 

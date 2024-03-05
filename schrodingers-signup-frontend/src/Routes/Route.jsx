@@ -1,7 +1,7 @@
 import {} from 'react';
 import {  Route, Routes } from "react-router-dom";
-import RegistrationForm from '../RegistrationForm';
-import Login from '../Login';
+import RegistrationForm from '../Pages/RegistrationForm';
+import Login from '../Pages/Login';
 
 const AllRoutes = () => {
   return (

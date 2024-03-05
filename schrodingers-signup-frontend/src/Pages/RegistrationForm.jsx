@@ -14,21 +14,20 @@ import {
   // MDBIcon,
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
-import Toaster from "./components/Toaster";
-import "./RegistrationForm.css";
+import Toaster from "../components/Toaster";
+import "../Styles/RegistrationForm.css";
 import { useNavigate } from "react-router-dom";
 
 function RegistrationForm() {
   const [isOnline, setIsOnline] = useState(true);
   const [offlineFormData, setOfflineFormData] = useState(null);
   const navigate = useNavigate();
-  console.log("isOnline", isOnline);
 
   async function appendOfflineDataToCloud(user) {
+    
     try {
       await axios.post(
         "https://schrodingers-signup-backend.vercel.app/api/user/signup",
-        // "http://localhost:5000/api/user/signup",
         user
       );
       return true; // Indicate successful append
@@ -123,7 +122,6 @@ function RegistrationForm() {
         if (isOnline) {
           await axios.post(
             "https://schrodingers-signup-backend.vercel.app/api/user/signup",
-            // "http://localhost:5000/api/user/signup",
             values
           );
           Toaster.success("User registered successfully.");
